@@ -2,4 +2,6 @@
     <string name="app_name">ExSantander</string>
     <string name="url1">https://floating-mountain-50292.herokuapp.com/cells.json</string>
     <string name="url2">https://floating-mountain-50292.herokuapp.com/fund.json</string>
+    <string name="titulo_dialogo">Aguarde&#8230;</string>
+    <string name="menssagem_dialogo">Coletando Dados&#8230;.</string>
 </resources>

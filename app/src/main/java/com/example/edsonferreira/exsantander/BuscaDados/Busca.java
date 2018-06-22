@@ -9,7 +9,7 @@ import com.example.edsonferreira.exsantander.R;
 
 public class Busca {
 
-    public void BuscInfo(Context tela) {
+    public void BuscaInfo(Context tela) {
 
         //Criar Banco de dados antes de tudo.
         new CriaBanco(tela);
