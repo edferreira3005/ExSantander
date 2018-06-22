@@ -14,7 +14,7 @@ public class TestesUnitarios {
 
         Conexao con = new Conexao();
 
-        String valor = con.BuscaUrl(Resources.getSystem().getString(R.string.url1));
+        String valor = con.BuscaUrl("https://floating-mountain-50292.herokuapp.com/cells.json");
 
 
         assertFalse(valor.isEmpty());

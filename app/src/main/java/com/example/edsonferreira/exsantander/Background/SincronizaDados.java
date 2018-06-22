@@ -13,12 +13,12 @@ public class SincronizaDados extends AsyncTask<Void, Void, Void> {
 
     @SuppressLint("StaticFieldLeak")
     private Context tela;
-
     private ProgressDialog Sincroniza;
 
     public SincronizaDados(Context tela){
 
         this.tela = tela;
+        Sincroniza = new ProgressDialog(tela);
 
 
     }
