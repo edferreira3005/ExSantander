@@ -17,7 +17,7 @@ public class PrincipalActivity extends AppCompatActivity {
         //Pedindo permissões necessárias
         PedePermissao permiss = new PedePermissao();
 
-        permiss.PedePermissao(this);
+        permiss.Permissao(this);
 
         //Sincronizando dados
         new SincronizaDados(this).execute();

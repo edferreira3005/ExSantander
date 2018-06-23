@@ -7,12 +7,15 @@ import com.example.edsonferreira.exsantander.BD.CriaBanco;
 import com.example.edsonferreira.exsantander.BuscaDados.Conexao.Conexao;
 import com.example.edsonferreira.exsantander.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Busca {
 
-    public void BuscaInfo(Context tela) {
+    public void BuscaInfo(Context tela) throws JSONException {
 
         //Criar Banco de dados antes de tudo.
-        new CriaBanco(tela);
+        CriaBanco banco = new CriaBanco(tela);
 
         //Buscando dados da URL
         Conexao con = new Conexao();
@@ -22,6 +25,20 @@ public class Busca {
 
         //Segunda URL de dados
         String Dados2 = con.BuscaUrl(Resources.getSystem().getString(R.string.url2));
+
+        //Inserindo dados na tabela CELLS
+        JSONObject cellsJson;
+
+        cellsJson = new JSONObject(Dados1);
+
+        if(cellsJson.length() > 0){
+
+            banco.Delete("CELLS");
+
+        }
+
+
+
     }
 
 }
