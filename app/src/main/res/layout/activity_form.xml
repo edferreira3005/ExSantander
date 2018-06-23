@@ -79,6 +79,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:text="@string/btn_env"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/botao_enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbEmail" />
