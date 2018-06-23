@@ -23,7 +23,7 @@ public class PedePermissao {
         }
     }
 
-    private static boolean hasPermissions(Context context, String... permissoes) {
+    public static boolean hasPermissions(Context context, String... permissoes) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissoes != null) {
             for (String permission : permissoes) {
                 if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {

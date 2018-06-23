@@ -40,8 +40,8 @@ public class SincronizaDados extends AsyncTask<Void, Void, Void> {
     protected  void onPreExecute()
     {
 
-        Sincroniza.setTitle(Resources.getSystem().getString(R.string.titulo_dialogo));
-        Sincroniza.setMessage(Resources.getSystem().getString(R.string.menssagem_dialogo));
+        Sincroniza.setTitle(tela.getResources().getString(R.string.titulo_dialogo));
+        Sincroniza.setMessage(tela.getResources().getString(R.string.menssagem_dialogo));
         Sincroniza.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         Sincroniza.show();
         Sincroniza.setCancelable(false);

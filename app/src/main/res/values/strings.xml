@@ -4,4 +4,7 @@
     <string name="url2">https://floating-mountain-50292.herokuapp.com/fund.json</string>
     <string name="titulo_dialogo">Aguarde&#8230;</string>
     <string name="menssagem_dialogo">Coletando Dados&#8230;.</string>
+    <string name="invest">Investimento</string>
+    <string name="contato">Contato</string>
+    <string name="btn_env">Enviar</string>
 </resources>
