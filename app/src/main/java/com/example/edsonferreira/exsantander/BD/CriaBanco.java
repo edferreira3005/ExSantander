@@ -1,6 +1,7 @@
 package com.example.edsonferreira.exsantander.BD;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -78,6 +79,61 @@ public class CriaBanco extends SQLiteOpenHelper {
                 "VALUES(" + IDCELLS + "," + TYPE_CELL + ",'" + MESSAGE + "'," + TYPEFIELD + "," +
                 "" + HIDDEN + "," + TOPSPACING + "," + SHOW + "," + REQUIRED + ");");
 
+    }
+
+    public void InsertScreen(String TITLE, String FUNDNAME,String WHATIS,String DEFINITION,
+                            String RISKTITLE,int RISK,String INFOTITLE){
+
+        sqLiteDatabase.execSQL("INSERT INTO SCREEN (TITLE , FUNDNAME" +
+                "           ,WHATIS, DEFINITION, RISKTITLE," +
+                "            RISK,INFOTITLE)" +
+                "VALUES('" + TITLE + "','" + FUNDNAME + "','" + WHATIS + "','" + DEFINITION + "'," +
+                "'" + RISKTITLE + "'," + RISK + ",'" + INFOTITLE + "');");
+
+    }
+
+    public void InsertMoreInfo(int IDSCREEN, double MONTHFUND,double MONTHCDI,double YEARFUND,
+                               double YEARCDI,double YMONTHSFUND,double YMONTHSCDI){
+
+        sqLiteDatabase.execSQL("INSERT INTO MOREINFO (IDSCREEN, MONTHFUND" +
+                "            ,MONTHCDI, YEARFUND, YEARCDI," +
+                "           YMONTHSFUND,YMONTHSCDI)" +
+                "VALUES(" + IDSCREEN + "," + MONTHFUND + "," + MONTHCDI + "," + YEARFUND + "," +
+                 + YEARCDI + "," + YMONTHSFUND + "," + YMONTHSCDI + ");");
+
+    }
+    public void InsertInfo(int IDSCREEN, String NAME,String DATA){
+
+        sqLiteDatabase.execSQL("INSERT INTO INFO (IDSCREEN, NAME" +
+                "           ,DATA)" +
+                "VALUES(" + IDSCREEN + ",'" + NAME + "','" + DATA + "');");
+
+    }
+
+    public void InsertDownInfo(int IDSCREEN, String NAME,String DATA){
+
+        sqLiteDatabase.execSQL("INSERT INTO DOWNINFO (IDSCREEN, NAME" +
+                "           ,DATA)" +
+                "VALUES(" + IDSCREEN + ",'" + NAME + "','" + DATA + "');");
+
+    }
+
+    public int getScreenId(){
+
+        int idCells = 0;
+
+        Cursor id = sqLiteDatabase.rawQuery("SELECT _id FROM SCREEN",null);
+
+        if(id.getCount() > 0){
+
+            id.moveToFirst();
+            idCells = id.getInt(0);
+
+
+        }
+
+        id.close();
+        return idCells;
     }
 
 }
