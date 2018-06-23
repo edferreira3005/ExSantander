@@ -17,9 +17,9 @@ public class CriaBanco extends SQLiteOpenHelper {
     private SQLiteDatabase sqLiteDatabase;
 
     private static final String CREATE_CELLS = "create table if not exists "
-            + CELLS_TABLE + " ( _id integer primary key autoincrement, TYPE_CELL int" +
-            ",MESSAGE text, TYPEFIELD text, HIDDEN text,"
-            + "TOPSPACING double,SHOW int, REQUIRED text);";
+            + CELLS_TABLE + " ( _id integer primary key autoincrement, IDCELLS int, TYPE_CELL int" +
+            ",MESSAGE text, TYPEFIELD int, HIDDEN boolean,"
+            + "TOPSPACING double,SHOW int, REQUIRED boolean);";
 
     private static final String CREATE_SCREEN = "create table if not exists "
             + SCREEN_TABLE + " ( _id integer primary key autoincrement, TITLE text, FUNDNAME text" +
@@ -69,14 +69,14 @@ public class CriaBanco extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DELETE FROM " + table);
     }
 
-    public void InsertCells(String TYPE_CELL,String MESSAGE,String TYPEFIELD,
-                            String HIDDEN,String TOPSPACING,String SHOW,String REQUIRED){
+    public void InsertCells(int IDCELLS, int TYPE_CELL,String MESSAGE,int TYPEFIELD,
+                            boolean HIDDEN,double TOPSPACING,int SHOW,boolean REQUIRED){
 
-        sqLiteDatabase.execSQL("INSERT INTO CELLS (TYPE_CELL" +
+        sqLiteDatabase.execSQL("INSERT INTO CELLS (IDCELLS,TYPE_CELL" +
                 ",MESSAGE, TYPEFIELD, HIDDEN" +
                 "TOPSPACING,SHOW, REQUIRED )" +
-                "VALUES('" + TYPE_CELL + "','" + MESSAGE + "','" + TYPEFIELD + "'," +
-                "'" + HIDDEN + "','" + TOPSPACING + "','" + SHOW + "','" + REQUIRED + "');");
+                "VALUES(" + IDCELLS + "," + TYPE_CELL + ",'" + MESSAGE + "'," + TYPEFIELD + "," +
+                "" + HIDDEN + "," + TOPSPACING + "," + SHOW + "," + REQUIRED + ");");
 
     }
 

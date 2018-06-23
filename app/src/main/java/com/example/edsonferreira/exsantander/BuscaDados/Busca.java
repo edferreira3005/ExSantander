@@ -35,6 +35,11 @@ public class Busca {
 
             banco.Delete("CELLS");
 
+            banco.InsertCells(cellsJson.getInt("id"),cellsJson.getInt("type"),
+                    cellsJson.getString("message"),cellsJson.getInt("typefield"),
+                    cellsJson.getBoolean("hidden"),cellsJson.getDouble("topSpacing"),
+                    cellsJson.getInt("show"),cellsJson.getBoolean("required"));
+
         }
 
 
