@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -23,7 +25,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/edName"
+        android:labelFor="@id/edName"
         android:layout_width="328dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -35,7 +38,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/edEmail"
+        android:labelFor="@id/edEmail"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -43,10 +47,11 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/edName" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/EdTel"
+        android:labelFor="@id/EdTel"
         android:layout_width="328dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
@@ -54,26 +59,29 @@
         android:inputType="phone"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/edEmail" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cbEmail"
+        android:labelFor="@id/cbEmail"
         android:layout_width="325dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:text=""
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/EdTel" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnEnviar"
+        android:labelFor="@id/btnEnviar"
         android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:text="@string/btn_env"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/cbEmail" />
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

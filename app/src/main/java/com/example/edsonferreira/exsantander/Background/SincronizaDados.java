@@ -42,7 +42,7 @@ public class SincronizaDados extends AsyncTask<Void, Void, Void> {
 
         Sincroniza.setTitle(tela.getResources().getString(R.string.titulo_dialogo));
         Sincroniza.setMessage(tela.getResources().getString(R.string.menssagem_dialogo));
-        Sincroniza.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        Sincroniza.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         Sincroniza.show();
         Sincroniza.setCancelable(false);
 

@@ -22,10 +22,10 @@ public class Busca {
         Conexao con = new Conexao();
 
         //Primeira URL de dados
-        String Dados1 = con.BuscaUrl(Resources.getSystem().getString(R.string.url1));
+        String Dados1 = con.BuscaUrl(tela.getResources().getString(R.string.url1));
 
         //Segunda URL de dados
-        String Dados2 = con.BuscaUrl(Resources.getSystem().getString(R.string.url2));
+        String Dados2 = con.BuscaUrl(tela.getResources().getString(R.string.url2));
 
         //Inserindo dados na tabela CELLS
         JSONObject cellsJson;
@@ -34,21 +34,37 @@ public class Busca {
 
         if(cellsJson.length() > 0){
 
-            banco.Delete("CELLS");
+            JSONArray CellsArray;
+            int i;
+            CellsArray = new JSONArray(cellsJson.getString("cells"));
 
-            banco.InsertCells(cellsJson.getInt("id"),cellsJson.getInt("type"),
-                    cellsJson.getString("message"),cellsJson.getInt("typefield"),
-                    cellsJson.getBoolean("hidden"),cellsJson.getDouble("topSpacing"),
-                    cellsJson.getInt("show"),cellsJson.getBoolean("required"));
+            for (i = 0; i < CellsArray.length(); i++) {
+
+                cellsJson = new JSONObject(CellsArray.getString(i));
+
+                if (i == 0 && CellsArray.length() > 0) {
+                    banco.Delete("CELLS");
+                }
+
+                banco.InsertCells(cellsJson.getInt("id"), cellsJson.getInt("type"),
+                        cellsJson.getString("message"), cellsJson.getString("typefield"),
+                        cellsJson.getString("hidden"), cellsJson.getDouble("topSpacing"),
+                        cellsJson.getString("show"), cellsJson.getString("required"));
+            }
 
         }
 
         //Inserindo dados nas tabelas SCREEN,MOREINFO,INFO e DOWNINFO
         //Pegando id da CELLS
 
-        JSONObject ScreenJson;
 
-        ScreenJson = new JSONObject(Dados2);
+        JSONObject ScreenJson1;
+
+        ScreenJson1 = new JSONObject(Dados2);
+
+        JSONObject ScreenJson = new JSONObject(ScreenJson1.getString("screen"));
+
+
 
         //Adicionando na tabela SCREEN
         if(ScreenJson.length() > 0) {
@@ -58,7 +74,7 @@ public class Busca {
             banco.InsertScreen(ScreenJson.getString("title"), ScreenJson.getString("fundName"),
                     ScreenJson.getString("whatIs"), ScreenJson.getString("definition"),
                     ScreenJson.getString("riskTitle"), ScreenJson.getInt("risk"),
-                    ScreenJson.getString("infoTile"));
+                    ScreenJson.getString("infoTitle"));
 
             int idScreen = banco.getScreenId();
 
@@ -121,9 +137,9 @@ public class Busca {
             JSONArray DownInfoArray;
             DownInfoArray = new JSONArray(ScreenJson.getString("downInfo"));
 
-            for (i = 0; i < InfoArray.length(); i++) {
+            for (i = 0; i < DownInfoArray.length(); i++) {
 
-                if (i == 0 && InfoArray.length() > 0) {
+                if (i == 0 && DownInfoArray.length() > 0) {
                     banco.Delete("DOWNINFO");
                 }
 
