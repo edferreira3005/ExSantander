@@ -28,6 +28,7 @@ import com.example.edsonferreira.exsantander.Background.SincronizaDados;
 import com.example.edsonferreira.exsantander.Permissoes.PedePermissao;
 import com.example.edsonferreira.exsantander.R;
 import com.example.edsonferreira.exsantander.Validacao.MascaraTel;
+import com.example.edsonferreira.exsantander.Validacao.ValidaEmail;
 
 import org.w3c.dom.Text;
 
@@ -45,25 +46,32 @@ public class PrincipalActivity extends AppCompatActivity {
         //As telas aparecerão dentro deste layout
         Fragmento = findViewById(R.id.Fragmento);
 
+        //Setando cores de validação de email
         final ColorStateList corInValid = ColorStateList.valueOf(ContextCompat.getColor(PrincipalActivity.this,
                 R.color.btnnormal));
 
         final ColorStateList corValid = ColorStateList.valueOf(ContextCompat.getColor(PrincipalActivity.this,
                 R.color.valid));
 
+        //Pegando resultado das consultas para montagem dos campos
         Consultas consulta = new Consultas(this);
         final Cursor Cells = consulta.ConsultaCells();
+        final Cursor Screen = consulta.ConsultaSreen();
+        final Cursor MoreInfo = consulta.ConsultaMoreInfo();
+        final Cursor InfoDown = consulta.ConsultaInfoDown();
 
+        //Layouts que irão inflar
         final LayoutInflater inflater = LayoutInflater
                 .from(getApplicationContext());
         final View[] VInvest = new View[1];
         final View[] VContact = new View[1];
         final View[] VEnvio = new View[1];
-
-        //Layouts que irão inflar
         VInvest[0] = inflater.inflate(R.layout.activity_invest, null);
         VContact[0] = inflater.inflate(R.layout.activity_form, null);
         VEnvio[0] = inflater.inflate(R.layout.activity_enviado, null);
+
+        //Abrindo Validador de Email
+        final ValidaEmail valid = new ValidaEmail();
 
 
         //Pedindo permissões necessárias
@@ -81,6 +89,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         Fragmento.addView(VContact[0]);
 
+        //Componentes em uso na tela de Contato
         Menu.setSelectedItemId(R.id.TagContatos);
         final Button btn_envio = findViewById(R.id.btnEnviar);
         final EditText name = findViewById(R.id.edName);
@@ -93,6 +102,8 @@ public class PrincipalActivity extends AppCompatActivity {
         final boolean[] emailRequired = {false};
         boolean telRequired = false;
         Cells.moveToFirst();
+
+        //Colocando valores do banco de dados nos devidos campos
         do{
 
             switch (Cells.getInt(1)){
@@ -149,6 +160,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         }while(Cells.moveToNext());
 
+        //Validando se quer ou não cadastrar email.
         final int finalVisibleField = VisibleField;
         checkemail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -226,12 +238,13 @@ public class PrincipalActivity extends AppCompatActivity {
                         return false;
                     }
                 });
+        //Mudando cor para validação do email
         email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onFocusChange(View view, boolean b) {
 
-               if(!ValidaEmail(email.getText().toString())){
+               if(!valid.ValidaEmail(email.getText().toString())){
                    email.setBackgroundTintList(corInValid);
                }else{
                    email.setBackgroundTintList(corValid);
@@ -245,6 +258,7 @@ public class PrincipalActivity extends AppCompatActivity {
         tel.addTextChangedListener(mascaraTel);
 
         //Setando ocorrência do botão "Enviar" para mostrar que a menssagem foi enviada.
+        //Validando campos na hora de enviar.
         final boolean finalTelRequired = telRequired;
         btn_envio.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -252,17 +266,24 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if(nomeRequired[0] && name.getText().toString().trim().length() == 0){
+
                     alerta("Erro","'Nome Completo' é um campo obrigatório!");
+
                 }else if(emailRequired[0]&& email.getText().toString().trim().length() ==0
                         && email.getVisibility() == View.VISIBLE){
+
                     alerta("Erro","'Email' é um campo obrigatório!");
+
                 }else if(finalTelRequired && tel.getText().toString().trim().length() == 0){
+
                     alerta("Erro","'Telefone' é um campo obrigatório!");
-                }else if(!ValidaEmail(email.getText().toString()) && emailRequired[0] &&
+
+                }else if(!valid.ValidaEmail(email.getText().toString()) && emailRequired[0] &&
                         email.getVisibility() == View.VISIBLE){
 
                     email.setBackgroundTintList(corInValid);
                     alerta("Erro","Email inválido!");
+
                 }else if(tel.length() < 14){
 
                     alerta("Erro","Formato de telefone inválido!");
@@ -270,6 +291,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 }
                     else{
                     email.setBackgroundTintList(corInValid);
+
                     //AsynkTask somente para aguardar 5 segundos e enviar
                     new EnvioMensagem(PrincipalActivity.this).execute();
 
@@ -303,6 +325,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     }
 
+    //Criando alerta para erros
     private void alerta(String Titulo,String Mensagem){
         AlertDialog.Builder alertar =  new Builder(PrincipalActivity.this);
         alertar.setTitle(Titulo);
@@ -312,7 +335,4 @@ public class PrincipalActivity extends AppCompatActivity {
 
     }
 
-    boolean ValidaEmail(CharSequence email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
 }

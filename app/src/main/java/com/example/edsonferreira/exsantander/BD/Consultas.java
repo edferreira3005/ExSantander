@@ -47,4 +47,58 @@ public class Consultas extends SQLiteOpenHelper {
         return Consulta;
 
     }
+
+    public Cursor ConsultaSreen(){
+
+        Consulta = sqLiteDatabase.rawQuery("SELECT " +
+                "                                     _id," +
+                "                                     TITLE ," +
+                "                                     FUNDNAME," +
+                "                                     WHATIS," +
+                "                                     DEFINITION," +
+                "                                     RISKTITLE," +
+                "                                     RISK," +
+                "                                     INFOTITLE " +
+                "                                FROM " +
+                "                                   SCREEN " +
+                "                                ORDER BY " +
+                "                                       _id",null);
+
+        return Consulta;
+    }
+
+    public Cursor ConsultaMoreInfo(){
+        Consulta = sqLiteDatabase.rawQuery("SELECT " +
+                "                                     _id," +
+                "                                     IDSCREEN, " +
+                "CASE WHEN MONTHFUND = 0 THEN CASE WHEN YEARFUND = 0 THEN YMONTHSFUND ELSE YEARFUND END" +
+                " ELSE MONTHFUND END AS 'FUND'," +
+                "CASE WHEN MONTHCDI = 0 THEN CASE WHEN YEARCDI = 0 THEN YMONTHSCDI ELSE YEARCDI END" +
+                " ELSE MONTHCDI END AS 'CDI' " +
+                "FROM " +
+                "    MOREINFO " +
+                " ORDER BY " +
+                "        _id",null);
+
+        return Consulta;
+    }
+
+    public Cursor ConsultaInfoDown(){
+        Consulta = sqLiteDatabase.rawQuery("SELECT " +
+                "                                     _id," +
+                "                                     IDSCREEN, " +
+                "                                     NAME," +
+                "                                     DATA" +
+                "                                FROM " +
+                "                                   INFO" +
+                "                                UNION ALL" +
+                "                                SELECT " +
+                "                                     _id," +
+                "                                     IDSCREEN," +
+                "                                     NAME," +
+                "                                     DATA" +
+                "                                 FROM" +
+                "                                    DOWNINFO",null);
+        return Consulta;
+    }
 }
