@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.example.edsonferreira.exsantander.BD.Consultas;
@@ -218,8 +220,49 @@ public class PrincipalActivity extends AppCompatActivity {
 
                                 Fragmento.addView(VInvest[0]);
 
+                                //Setando campos ao inflar "Investimentos"
+                                TextView title = findViewById(R.id.tvTitle);
+                                TextView fundName = findViewById(R.id.tvFundName);
+                                TextView whatIs = findViewById(R.id.tvWhatIs);
+                                TextView definition = findViewById(R.id.tvDefinition);
+                                TextView risktitle = findViewById(R.id.tvRiskTitle);
+                                TextView risk = findViewById(R.id.tvRisk);
+                                TextView infoTitle = findViewById(R.id.tvInfoTitle);
+                                ListView moreInfo = findViewById(R.id.lvMoreInfo);
+                                ListView infoDown = findViewById(R.id.lvInfoDown);
 
+                                if(Screen.getCount() > 0){
 
+                                    Screen.moveToFirst();
+
+                                    title.setText(Screen.getString(1));
+                                    fundName.setText(Screen.getString(2));
+                                    whatIs.setText(Screen.getString(3));
+                                    definition.setText(Screen.getString(4));
+                                    risktitle.setText(Screen.getString(5));
+                                    risk.setText(Screen.getString(6));
+                                    infoTitle.setText(Screen.getString(7));
+
+                                }
+
+                                //Montando Listas de informações
+                                final String [] colunasMoreInfo = new String[] {"DESCR","FUND","CDI"};
+                                SimpleCursorAdapter listaMoreInfo;
+                                MoreInfo.moveToFirst();
+                                listaMoreInfo = new SimpleCursorAdapter(PrincipalActivity.this
+                                        , R.layout.itens_lista_moreinfo, MoreInfo,colunasMoreInfo,
+                                        new int[]{R.id.tvDescr,R.id.tvFund,R.id.tvCDI});
+
+                                moreInfo.setAdapter(listaMoreInfo);
+
+                                SimpleCursorAdapter listaInfoDown;
+                                InfoDown.moveToFirst();
+                                final String [] colunasInfoDown = new String[] {"NAME","DATA"};
+                                listaInfoDown = new SimpleCursorAdapter(PrincipalActivity.this
+                                        , R.layout.itens_lista_infodown, InfoDown,colunasInfoDown,
+                                        new int[]{R.id.tvNameDown,R.id.tvData});
+
+                                infoDown.setAdapter(listaInfoDown);
                                 break;
 
                             case R.id.TagContatos:
