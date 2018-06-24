@@ -11,9 +11,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+
 public class Busca {
 
-    public void BuscaInfo(Context tela) throws JSONException {
+    public void BuscaInfo(Context tela) throws JSONException, UnsupportedEncodingException {
 
         //Criar Banco de dados antes de tudo.
         CriaBanco banco = new CriaBanco(tela);
@@ -45,9 +47,12 @@ public class Busca {
                 if (i == 0 && CellsArray.length() > 0) {
                     banco.Delete("CELLS");
                 }
+                //Transformando letras com acentuação
+                byte formatedtext[] = cellsJson.getString("message").trim().getBytes("ISO-8859-1");
+                String message = new String(formatedtext, "UTF-8");
 
                 banco.InsertCells(cellsJson.getInt("id"), cellsJson.getInt("type"),
-                        cellsJson.getString("message"), cellsJson.getString("typefield"),
+                        message, cellsJson.getString("typefield"),
                         cellsJson.getString("hidden"), cellsJson.getDouble("topSpacing"),
                         cellsJson.getString("show"), cellsJson.getString("required"));
             }
@@ -70,11 +75,23 @@ public class Busca {
         if(ScreenJson.length() > 0) {
 
             banco.Delete("SCREEN");
+            byte ptext1[] = ScreenJson.getString("title").trim().getBytes("ISO-8859-1");
+            String title = new String(ptext1, "UTF-8");
+            byte ptext2[] = ScreenJson.getString("fundName").trim().getBytes("ISO-8859-1");
+            String fundName = new String(ptext2, "UTF-8");
+            byte ptext3[] = ScreenJson.getString("whatIs").trim().getBytes("ISO-8859-1");
+            String whatIs = new String(ptext3, "UTF-8");
+            byte ptext4[] = ScreenJson.getString("definition").trim().getBytes("ISO-8859-1");
+            String definition = new String(ptext4, "UTF-8");
+            byte ptext5[] = ScreenJson.getString("riskTitle").trim().getBytes("ISO-8859-1");
+            String riskTitle = new String(ptext5, "UTF-8");
+            byte ptext6[] = ScreenJson.getString("infoTitle").trim().getBytes("ISO-8859-1");
+            String infoTitle = new String(ptext6, "UTF-8");
 
-            banco.InsertScreen(ScreenJson.getString("title"), ScreenJson.getString("fundName"),
-                    ScreenJson.getString("whatIs"), ScreenJson.getString("definition"),
-                    ScreenJson.getString("riskTitle"), ScreenJson.getInt("risk"),
-                    ScreenJson.getString("infoTitle"));
+            banco.InsertScreen(title,fundName,
+                    whatIs,definition,
+                    riskTitle, ScreenJson.getInt("risk"),
+                    infoTitle);
 
             int idScreen = banco.getScreenId();
 
@@ -129,7 +146,10 @@ public class Busca {
 
                 JSONObject InfoJson = new JSONObject(InfoArray.getString(i));
 
-                banco.InsertInfo(idScreen,InfoJson.getString("name"),
+                byte ptext7[] = InfoJson.getString("name").trim().getBytes("ISO-8859-1");
+                String name = new String(ptext7, "UTF-8");
+
+                banco.InsertInfo(idScreen,name,
                         InfoJson.getString("data"));
             }
 
@@ -145,7 +165,10 @@ public class Busca {
 
                 JSONObject DownInfoJson = new JSONObject(DownInfoArray.getString(i));
 
-                banco.InsertDownInfo(idScreen,DownInfoJson.getString("name"),
+                byte ptext8[] = DownInfoJson.getString("name").trim().getBytes("ISO-8859-1");
+                String name2 = new String(ptext8, "UTF-8");
+
+                banco.InsertDownInfo(idScreen,name2,
                         DownInfoJson.getString("data"));
             }
 
