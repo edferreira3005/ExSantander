@@ -1,147 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="1dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/invest"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:textAlignment="center"
-        android:ems="10"
-        android:text=""
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/invest"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvFundName"
-        android:layout_width="341dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:textAlignment="center"
-        android:labelFor="@id/edEmail"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="339dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:ems="10"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvWhatIs"
-        android:layout_width="339dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:labelFor="@id/EdTel"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvFundName" />
+        <TextView
+            android:id="@+id/tvFundName"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:labelFor="@id/edEmail"
+            android:textAlignment="center"
+            android:textSize="42dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-    <TextView
-        android:id="@+id/tvDefinition"
-        android:labelFor="@id/cbEmail"
-        android:layout_width="325dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text=""
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvWhatIs" />
+        <TextView
+            android:id="@+id/tvWhatIs"
+            android:layout_width="339dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:ems="10"
+            android:labelFor="@id/EdTel"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvFundName" />
 
-    <TextView
-        android:id="@+id/tvRiskTitle"
-        android:layout_width="316dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:labelFor="@id/btnEnviar"
-        android:textAlignment="center"
-        android:text="@string/btn_env"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDefinition" />
+        <TextView
+            android:id="@+id/tvDefinition"
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/cbEmail"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvWhatIs" />
 
-    <TextView
-        android:id="@+id/tvRisk"
-        android:labelFor="@id/cbEmail"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text=""
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvRiskTitle" />
+        <TextView
+            android:id="@+id/tvRiskTitle"
+            android:layout_width="316dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:labelFor="@id/btnEnviar"
+            android:text="@string/btn_env"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvDefinition" />
 
-    <TextView
-        android:id="@+id/tvInfoTitle"
-        android:labelFor="@id/cbEmail"
-        android:textAlignment="center"
-        android:layout_width="370dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text=""
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvRisk" />
+        <ImageView
+            android:id="@+id/tvRisk"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:labelFor="@id/cbEmail"
+            android:src="@drawable/imgrisk"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvRiskTitle" />
 
-    <ListView
-        android:id="@+id/lvMoreInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvInfoTitle"
-        >
+        <TextView
+            android:id="@+id/tvInfoTitle"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/cbEmail"
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvRisk" />
 
-    </ListView>
+        <ListView
+            android:id="@+id/lvMoreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/tvInfoTitle">
 
-    <ListView
-        android:id="@+id/lvInfoDown"
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/lvMoreInfo">
+        </ListView>
 
-    </ListView>
+        <ListView
+            android:id="@+id/lvInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/lvMoreInfo">
+        </ListView>
 
-    <Button
-        android:id="@+id/btnInvest"
-        android:layout_width="316dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/invest"
-        android:background="@drawable/botao_enviar"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/lvInfoDown" />
+        <ListView
+            android:id="@+id/lvInfoDown"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/lvInfo">
 
+        </ListView>
 
+        <Button
+            android:id="@+id/btnInvest"
+            android:layout_width="316dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/botao_enviar"
+            android:text="@string/invest"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/lvInfoDown" />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
     </ScrollView>

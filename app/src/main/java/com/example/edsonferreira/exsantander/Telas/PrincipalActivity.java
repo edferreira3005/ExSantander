@@ -2,7 +2,8 @@ package com.example.edsonferreira.exsantander.Telas;
 
 import android.content.res.ColorStateList;
 import android.database.Cursor;
-import android.os.AsyncTask;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -16,10 +17,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -31,10 +33,6 @@ import com.example.edsonferreira.exsantander.Permissoes.PedePermissao;
 import com.example.edsonferreira.exsantander.R;
 import com.example.edsonferreira.exsantander.Validacao.MascaraTel;
 import com.example.edsonferreira.exsantander.Validacao.ValidaEmail;
-
-import org.w3c.dom.Text;
-
-import java.util.concurrent.ExecutionException;
 
 public class PrincipalActivity extends AppCompatActivity {
     private ConstraintLayout Fragmento;
@@ -61,6 +59,7 @@ public class PrincipalActivity extends AppCompatActivity {
         final Cursor Screen = consulta.ConsultaSreen();
         final Cursor MoreInfo = consulta.ConsultaMoreInfo();
         final Cursor InfoDown = consulta.ConsultaInfoDown();
+        final Cursor Info = consulta.ConsultaInfo();
 
         //Layouts que irão inflar
         final LayoutInflater inflater = LayoutInflater
@@ -99,6 +98,11 @@ public class PrincipalActivity extends AppCompatActivity {
         final EditText email = findViewById(R.id.edEmail);
         final EditText tel = findViewById(R.id.EdTel);
         final TextView tvnome = findViewById(R.id.tvNome);
+        Typeface faceContact = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Bold.otf");
+        TextView contato = findViewById(R.id.tvContact);
+        Typeface facetvNome = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Medium.otf");
+        tvnome.setTypeface(facetvNome);
+        contato.setTypeface(faceContact);
         int VisibleField = 1;
         final boolean[] nomeRequired = {false};
         final boolean[] emailRequired = {false};
@@ -119,6 +123,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 case 2:
                     name.setHint(Cells.getString(3));
+                    name.setHintTextColor(Color.GRAY);
+                    Typeface faceNome = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Black.otf");
+                    name.setTypeface(faceNome);
                     if(Boolean.valueOf(Cells.getString(5))){
                         name.setVisibility(View.INVISIBLE);
                     }
@@ -135,6 +142,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 case 4:
                     email.setHint(Cells.getString(3));
+                    email.setHintTextColor(Color.GRAY);
+                    Typeface faceemail = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Black.otf");
+                    email.setTypeface(faceemail);
                     if(Boolean.valueOf(Cells.getString(5))){
                         email.setVisibility(View.INVISIBLE);
                     }
@@ -144,6 +154,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 case 6:
                     tel.setHint(Cells.getString(3));
+                    tel.setHintTextColor(Color.GRAY);
+                    Typeface facetel = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Black.otf");
+                    tel.setTypeface(facetel);
                     if(Boolean.valueOf(Cells.getString(5))){
                         tel.setVisibility(View.INVISIBLE);
                     }
@@ -226,10 +239,36 @@ public class PrincipalActivity extends AppCompatActivity {
                                 TextView whatIs = findViewById(R.id.tvWhatIs);
                                 TextView definition = findViewById(R.id.tvDefinition);
                                 TextView risktitle = findViewById(R.id.tvRiskTitle);
-                                TextView risk = findViewById(R.id.tvRisk);
+                                TextView invest = findViewById(R.id.textView);
+                                //ImageView risk = findViewById(R.id.tvRisk);
                                 TextView infoTitle = findViewById(R.id.tvInfoTitle);
-                                ListView moreInfo = findViewById(R.id.lvMoreInfo);
+                                final ListView moreInfo = findViewById(R.id.lvMoreInfo);
                                 ListView infoDown = findViewById(R.id.lvInfoDown);
+                                ListView info = findViewById(R.id.lvInfo);
+
+                                //Setando fontes
+                                final Typeface facedescr;
+                                Typeface faceInvest;
+                                Typeface faceTitle;
+                                Typeface facefundName;
+                                Typeface facewhatIs;
+                                Typeface facedefinition;
+                                Typeface facerisktitle;
+                                Typeface faceinfoTitle;
+                                faceInvest = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Bold.otf");
+                                faceTitle = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Medium.otf");
+                                facefundName = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Bold.otf");
+                                facewhatIs = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Medium.otf");
+                                facedefinition = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Light.otf");
+                                facerisktitle = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Medium.otf");
+                                faceinfoTitle = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Medium.otf");
+                                invest.setTypeface(faceInvest);
+                                title.setTypeface(faceTitle);
+                                fundName.setTypeface(facefundName);
+                                whatIs.setTypeface(facewhatIs);
+                                definition.setTypeface(facedefinition);
+                                risktitle.setTypeface(facerisktitle);
+                                infoTitle.setTypeface(faceinfoTitle);
 
                                 if(Screen.getCount() > 0){
 
@@ -240,7 +279,6 @@ public class PrincipalActivity extends AppCompatActivity {
                                     whatIs.setText(Screen.getString(3));
                                     definition.setText(Screen.getString(4));
                                     risktitle.setText(Screen.getString(5));
-                                    risk.setText(Screen.getString(6));
                                     infoTitle.setText(Screen.getString(7));
 
                                 }
@@ -255,12 +293,23 @@ public class PrincipalActivity extends AppCompatActivity {
 
                                 moreInfo.setAdapter(listaMoreInfo);
 
+                                SimpleCursorAdapter listaInfo;
+                                Info.moveToFirst();
+                                final String [] colunasInfo = new String[] {"NAME","DATA"};
+                                listaInfo= new SimpleCursorAdapter(PrincipalActivity.this
+                                        , R.layout.itens_lista_info, Info,colunasInfo,
+                                        new int[]{R.id.tvNameDown,R.id.tvData});
+
+
+                                info.setAdapter(listaInfo);
+
                                 SimpleCursorAdapter listaInfoDown;
                                 InfoDown.moveToFirst();
-                                final String [] colunasInfoDown = new String[] {"NAME","DATA"};
+                                final String [] colunasInfoDown = new String[] {"NAME"};
                                 listaInfoDown = new SimpleCursorAdapter(PrincipalActivity.this
                                         , R.layout.itens_lista_infodown, InfoDown,colunasInfoDown,
-                                        new int[]{R.id.tvNameDown,R.id.tvData});
+                                        new int[]{R.id.tvNameDown});
+
 
                                 infoDown.setAdapter(listaInfoDown);
                                 break;
@@ -345,8 +394,23 @@ public class PrincipalActivity extends AppCompatActivity {
 
                     Fragmento.addView(VEnvio[0]);
 
-                    //Quando for nova menssagem, voltar para a tela de envio
                     TextView nova = findViewById(R.id.tvNova);
+                    TextView contatenvia = findViewById(R.id.textView2);
+                    TextView obg = findViewById(R.id.txObg);
+                    TextView Message = findViewById(R.id.tvMessage);
+
+                    Typeface facecontatenvia = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Bold.otf");
+                    Typeface faceobg = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Medium.otf");
+                    Typeface faceMessage = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Bold.otf");
+                    Typeface facenova = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Light.otf");
+
+                    contatenvia.setTypeface(facecontatenvia);
+                    obg.setTypeface(faceobg);
+                    Message.setTypeface(faceMessage);
+                    nova.setTypeface(facenova);
+
+                    //Quando for nova menssagem, voltar para a tela de envio
+
 
                     nova.setOnClickListener(new View.OnClickListener() {
                         @Override

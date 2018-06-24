@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:text="TextView" />
 
-    <ImageView
+    <TextView
         android:id="@+id/tvData"
         android:layout_width="wrap_content"
         android:src="@drawable/imgbaixar"

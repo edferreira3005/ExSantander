@@ -85,16 +85,20 @@ public class Consultas extends SQLiteOpenHelper {
         return Consulta;
     }
 
-    public Cursor ConsultaInfoDown(){
+    public Cursor ConsultaInfo(){
         Consulta = sqLiteDatabase.rawQuery("SELECT " +
                 "                                     _id," +
                 "                                     IDSCREEN, " +
                 "                                     NAME as 'NAME'," +
                 "                                     DATA as 'DATA'" +
                 "                                FROM " +
-                "                                   INFO" +
-                "                                UNION ALL" +
-                "                                SELECT " +
+                "                                   INFO",null);
+
+        return Consulta;
+    }
+
+    public Cursor ConsultaInfoDown(){
+        Consulta = sqLiteDatabase.rawQuery("SELECT " +
                 "                                     _id," +
                 "                                     IDSCREEN," +
                 "                                     NAME as 'NAME'," +
