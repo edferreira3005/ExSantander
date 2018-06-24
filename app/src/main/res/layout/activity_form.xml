@@ -26,12 +26,12 @@
 
     <EditText
         android:id="@+id/edName"
-        android:labelFor="@id/edName"
-        android:layout_width="328dp"
+        android:layout_width="339dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:labelFor="@id/edName"
         android:text=""
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -39,24 +39,24 @@
 
     <EditText
         android:id="@+id/edEmail"
-        android:labelFor="@id/edEmail"
-        android:layout_width="329dp"
+        android:layout_width="341dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:labelFor="@id/edEmail"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edName" />
 
     <EditText
         android:id="@+id/EdTel"
-        android:labelFor="@id/EdTel"
-        android:layout_width="328dp"
+        android:layout_width="339dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:inputType="phone"
+        android:labelFor="@id/EdTel"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/edEmail" />
@@ -74,13 +74,13 @@
 
     <Button
         android:id="@+id/btnEnviar"
-        android:labelFor="@id/btnEnviar"
-        android:layout_width="208dp"
+        android:layout_width="316dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/botao_enviar"
+        android:labelFor="@id/btnEnviar"
         android:text="@string/btn_env"
         android:textColor="#FFFFFF"
-        android:background="@drawable/botao_enviar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbEmail" />
