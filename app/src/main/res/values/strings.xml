@@ -3,8 +3,12 @@
     <string name="url1">https://floating-mountain-50292.herokuapp.com/cells.json</string>
     <string name="url2">https://floating-mountain-50292.herokuapp.com/fund.json</string>
     <string name="titulo_dialogo">Aguarde&#8230;</string>
-    <string name="menssagem_dialogo">Coletando Dados&#8230;.</string>
+    <string name="menssagem_dialogo">Coletando Dados&#8230;</string>
     <string name="invest">Investimento</string>
     <string name="contato">Contato</string>
     <string name="btn_env">Enviar</string>
+    <string name="envio_obg">Obrigado!</string>
+    <string name="envio_menss">Menssagem enviada com sucesso :]</string>
+    <string name="envio_nova">Enviar nova mensagem</string>
+    <string name="enviando">Enviando mensagem&#8230;</string>
 </resources>
