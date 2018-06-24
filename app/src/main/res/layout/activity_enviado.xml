@@ -58,7 +58,7 @@
             android:ems="10"
             android:text="@string/envio_nova"
             android:textAlignment="center"
-            android:textColor="#B90D0F"
+            android:textColor="@color/btnnormal"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
