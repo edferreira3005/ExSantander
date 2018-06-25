@@ -107,4 +107,18 @@ public class Consultas extends SQLiteOpenHelper {
                 "                                    DOWNINFO",null);
         return Consulta;
     }
+
+    public Cursor ConsultaUser() {
+
+        Consulta = sqLiteDatabase.rawQuery("SELECT " +
+                "                                     _id," +
+                "                                     NAME," +
+                "                                     EMAIL," +
+                "                                     TEL" +
+                "                                 FROM" +
+                "                                    USINFO",null);
+
+
+        return Consulta;
+    }
 }

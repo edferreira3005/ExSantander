@@ -4,6 +4,7 @@ import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -27,12 +28,15 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.example.edsonferreira.exsantander.BD.Consultas;
+import com.example.edsonferreira.exsantander.BD.CriaBanco;
 import com.example.edsonferreira.exsantander.Background.EnvioMensagem;
 import com.example.edsonferreira.exsantander.Background.SincronizaDados;
 import com.example.edsonferreira.exsantander.Permissoes.PedePermissao;
 import com.example.edsonferreira.exsantander.R;
 import com.example.edsonferreira.exsantander.Validacao.MascaraTel;
 import com.example.edsonferreira.exsantander.Validacao.ValidaEmail;
+
+import java.util.concurrent.ExecutionException;
 
 public class PrincipalActivity extends AppCompatActivity {
     private ConstraintLayout Fragmento;
@@ -53,13 +57,6 @@ public class PrincipalActivity extends AppCompatActivity {
         final ColorStateList corValid = ColorStateList.valueOf(ContextCompat.getColor(PrincipalActivity.this,
                 R.color.valid));
 
-        //Pegando resultado das consultas para montagem dos campos
-        Consultas consulta = new Consultas(this);
-        final Cursor Cells = consulta.ConsultaCells();
-        final Cursor Screen = consulta.ConsultaSreen();
-        final Cursor MoreInfo = consulta.ConsultaMoreInfo();
-        final Cursor InfoDown = consulta.ConsultaInfoDown();
-        final Cursor Info = consulta.ConsultaInfo();
 
         //Layouts que irão inflar
         final LayoutInflater inflater = LayoutInflater
@@ -81,7 +78,22 @@ public class PrincipalActivity extends AppCompatActivity {
         permiss.Permissao(this);
 
         //Sincronizando dados
-        new SincronizaDados(this).execute();
+
+        try {
+            new SincronizaDados(this).execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        //Pegando resultado das consultas para montagem dos campos
+        Consultas consulta = new Consultas(this);
+        final Cursor Cells = consulta.ConsultaCells();
+        final Cursor Screen = consulta.ConsultaSreen();
+        final Cursor MoreInfo = consulta.ConsultaMoreInfo();
+        final Cursor InfoDown = consulta.ConsultaInfoDown();
+        final Cursor Info = consulta.ConsultaInfo();
+        final Cursor UserInfo = consulta.ConsultaUser();
 
         //Deixando o formulário como o principal
         Fragmento.removeView(VInvest[0]);
@@ -107,6 +119,17 @@ public class PrincipalActivity extends AppCompatActivity {
         final boolean[] nomeRequired = {false};
         final boolean[] emailRequired = {false};
         boolean telRequired = false;
+
+        //Verificando usuário já cadastrado
+        if(UserInfo.getCount() > 0){
+
+            UserInfo.moveToFirst();
+            name.setText(UserInfo.getString(1));
+            email.setText(UserInfo.getString(2));
+            tel.setText(UserInfo.getString(3));
+
+        }
+
         Cells.moveToFirst();
 
         //Colocando valores do banco de dados nos devidos campos
@@ -394,6 +417,11 @@ public class PrincipalActivity extends AppCompatActivity {
                 }
                     else{
                     email.setBackgroundTintList(corInValid);
+
+                    //Add Usuário
+                    CriaBanco banco = new CriaBanco(PrincipalActivity.this);
+                    banco.InsertUser(name.getText().toString().trim(),email.getText().toString(),
+                            tel.getText().toString().trim());
 
                     //AsynkTask somente para aguardar 5 segundos e enviar
                     new EnvioMensagem(PrincipalActivity.this).execute();

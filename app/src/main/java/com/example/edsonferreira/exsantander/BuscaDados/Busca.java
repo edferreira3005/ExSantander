@@ -17,7 +17,7 @@ public class Busca {
 
     public void BuscaInfo(Context tela) throws JSONException, UnsupportedEncodingException {
 
-        //Criar Banco de dados antes de tudo.
+        //Abrir Banco de dados antes de tudo.
         CriaBanco banco = new CriaBanco(tela);
 
         //Buscando dados da URL

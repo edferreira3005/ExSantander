@@ -43,7 +43,7 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     private static final String CREATE_USINFO = "create table if not exists "
             + USINFO_TABLE + " ( _id integer primary key autoincrement, NAME text, EMAIL text" +
-            ",TEL int);";
+            ",TEL text);";
 
     public CriaBanco(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -117,6 +117,15 @@ public class CriaBanco extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("INSERT INTO DOWNINFO (IDSCREEN, NAME" +
                 "           ,DATA)" +
                 "VALUES(" + IDSCREEN + ",'" + NAME + "','" + DATA + "');");
+
+    }
+
+    public void InsertUser(String NAME, String EMAIL, String TEL){
+
+        sqLiteDatabase.execSQL("DELETE FROM USINFO");
+
+        sqLiteDatabase.execSQL("INSERT INTO USINFO (NAME,EMAIL,TEL)" +
+                "VALUES('" + NAME + "','" + EMAIL + "','" + TEL + "')");
 
     }
 
