@@ -126,7 +126,7 @@
         <ListView
             android:id="@+id/lvInfo"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/lvMoreInfo">
@@ -135,7 +135,7 @@
         <ListView
             android:id="@+id/lvInfoDown"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
+            android:layout_height="160dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/lvInfo">
@@ -146,7 +146,6 @@
             android:id="@+id/btnInvest"
             android:layout_width="316dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:background="@drawable/botao_enviar"
             android:text="@string/invest"
             android:textColor="#FFFFFF"

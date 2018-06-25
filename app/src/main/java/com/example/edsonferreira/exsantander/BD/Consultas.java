@@ -71,10 +71,10 @@ public class Consultas extends SQLiteOpenHelper {
         Consulta = sqLiteDatabase.rawQuery("SELECT " +
                 "                                     _id," +
                 "                                     IDSCREEN, " +
-                "CASE WHEN MONTHFUND = 0 THEN CASE WHEN YEARFUND = 0 THEN YMONTHSFUND ELSE YEARFUND END" +
-                " ELSE MONTHFUND END AS 'FUND'," +
-                "CASE WHEN MONTHCDI = 0 THEN CASE WHEN YEARCDI = 0 THEN YMONTHSCDI ELSE YEARCDI END" +
-                " ELSE MONTHCDI END AS 'CDI'," +
+                "CASE WHEN MONTHFUND = 0 THEN CASE WHEN YEARFUND = 0 THEN YMONTHSFUND ||'%' ELSE YEARFUND ||'%' END" +
+                " ELSE MONTHFUND ||'%' END AS 'FUND'," +
+                "CASE WHEN MONTHCDI = 0 THEN CASE WHEN YEARCDI = 0 THEN YMONTHSCDI ||'%' ELSE YEARCDI ||'%' END" +
+                " ELSE MONTHCDI ||'%' END AS 'CDI'," +
                 "CASE WHEN MONTHFUND = 0 THEN CASE WHEN YEARFUND = 0 THEN '12 meses' ELSE 'No Ano' END" +
                 "               ELSE 'No mês' END AS 'DESCR' " +
                 "FROM " +

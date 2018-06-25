@@ -221,7 +221,6 @@ public class PrincipalActivity extends AppCompatActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                        Menu.setBackgroundResource(R.drawable.menu_check);
 
                         switch (item.getItemId()) {
 
@@ -312,6 +311,16 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
                                 infoDown.setAdapter(listaInfoDown);
+
+                                Button btnInvestir = findViewById(R.id.btnInvest);
+                                Typeface faceInvestir = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Regular.otf");
+                                btnInvestir.setTypeface(faceInvestir);
+                                btnInvestir.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        alerta("Sucesso!","Investimento realizado :]");
+                                    }
+                                });
                                 break;
 
                             case R.id.TagContatos:
@@ -352,6 +361,8 @@ public class PrincipalActivity extends AppCompatActivity {
         //Setando ocorrência do botão "Enviar" para mostrar que a menssagem foi enviada.
         //Validando campos na hora de enviar.
         final boolean finalTelRequired = telRequired;
+        Typeface faceEnvio = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Regular.otf");
+        btn_envio.setTypeface(faceEnvio);
         btn_envio.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override

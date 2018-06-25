@@ -8,7 +8,7 @@
     <string name="contato">Contato</string>
     <string name="btn_env">Enviar</string>
     <string name="envio_obg">Obrigado!</string>
-    <string name="envio_menss">Menssagem enviada com sucesso :]</string>
+    <string name="envio_menss">Mensagem enviada com sucesso :]</string>
     <string name="envio_nova">Enviar nova mensagem</string>
     <string name="enviando">Enviando mensagem&#8230;</string>
 </resources>
