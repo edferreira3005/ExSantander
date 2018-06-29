@@ -1,5 +1,6 @@
 package com.example.edsonferreira.exsantander.Telas;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -364,14 +365,23 @@ public class PrincipalActivity extends AppCompatActivity {
                 });
         //Mudando cor para validação do email
         email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @SuppressLint("ResourceAsColor")
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onFocusChange(View view, boolean b) {
 
                if(!valid.ValidaEmail(email.getText().toString())){
-                   email.setBackgroundTintList(corInValid);
+                   if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                       email.setBackgroundColor(R.color.colorPrimaryDark);
+                   }else{
+                       email.setBackgroundTintList(corInValid);
+                   }
                }else{
-                   email.setBackgroundTintList(corValid);
+                   if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                       email.setBackgroundColor(R.color.valid);
+                   }else{
+                       email.setBackgroundTintList(corValid);
+                   }
                }
 
             }
@@ -387,6 +397,7 @@ public class PrincipalActivity extends AppCompatActivity {
         Typeface faceEnvio = Typeface.createFromAsset(getAssets(), "fonts/DINPro-Regular.otf");
         btn_envio.setTypeface(faceEnvio);
         btn_envio.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
@@ -407,7 +418,11 @@ public class PrincipalActivity extends AppCompatActivity {
                 }else if(!valid.ValidaEmail(email.getText().toString()) && emailRequired[0] &&
                         email.getVisibility() == View.VISIBLE){
 
-                    email.setBackgroundTintList(corInValid);
+                    if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                        email.setBackgroundColor(R.color.colorPrimaryDark);
+                    }else{
+                        email.setBackgroundTintList(corInValid);
+                    }
                     alerta("Erro","Email inválido!");
 
                 }else if(tel.length() < 14){
@@ -416,7 +431,11 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 }
                     else{
-                    email.setBackgroundTintList(corInValid);
+                    if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                        email.setBackgroundColor(R.color.colorPrimaryDark);
+                    }else{
+                        email.setBackgroundTintList(corInValid);
+                    }
 
                     //Add Usuário
                     CriaBanco banco = new CriaBanco(PrincipalActivity.this);
