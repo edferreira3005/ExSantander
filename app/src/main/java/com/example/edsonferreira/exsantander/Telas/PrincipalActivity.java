@@ -371,13 +371,13 @@ public class PrincipalActivity extends AppCompatActivity {
             public void onFocusChange(View view, boolean b) {
 
                if(!valid.ValidaEmail(email.getText().toString())){
-                   if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                   if( Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ) {
                        email.setBackgroundColor(R.color.colorPrimaryDark);
                    }else{
                        email.setBackgroundTintList(corInValid);
                    }
                }else{
-                   if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                   if( Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ) {
                        email.setBackgroundColor(R.color.valid);
                    }else{
                        email.setBackgroundTintList(corValid);
@@ -418,7 +418,7 @@ public class PrincipalActivity extends AppCompatActivity {
                 }else if(!valid.ValidaEmail(email.getText().toString()) && emailRequired[0] &&
                         email.getVisibility() == View.VISIBLE){
 
-                    if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                    if( Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ) {
                         email.setBackgroundColor(R.color.colorPrimaryDark);
                     }else{
                         email.setBackgroundTintList(corInValid);
@@ -431,7 +431,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 }
                     else{
-                    if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT ) {
+                    if( Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT ) {
                         email.setBackgroundColor(R.color.colorPrimaryDark);
                     }else{
                         email.setBackgroundTintList(corInValid);
